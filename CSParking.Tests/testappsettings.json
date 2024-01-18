@@ -1,0 +1,33 @@
+{
+	"Logging": {
+		"LogFilePath": "G:\\Logs\\CSParking-{Date}.txt",
+		"LogTemplate": "{Timestamp:o} [{Level:w3}] {Message} ({EventId:x8}){NewLine}{Exception}",
+		"LogLevel": {
+			"Default": "Information",
+			"Microsoft.AspNetCore": "Warning"
+		}
+	},
+	"Time": 10,
+	"ConnectionStrings": {
+		"MfRADb": "",
+		"MfRADb_Development": "Server=localhost;Database=MfRADb;Encrypt=false;User Id=CSParkingUser;Password=1"
+	},
+	"Responses": {
+		"DatabaseNotAvailable": "nc",
+		"Close": "close",
+		"Open": "open"
+	},
+	"Retry": {
+		"RetryCount": 10,
+		"RetryDelayMilliseconds": 1000
+	},
+	"PayTypes": {
+		"EmptyPayTypeValue": "-",
+		"Cash": "Нал",
+		"Cashless": "Безнал"
+	},
+	"EventTypes": {
+		"In": "Вход",
+		"Out": "Выход"
+	}
+}

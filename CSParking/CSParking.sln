@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34414.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSParking", "CSParking.csproj", "{F916A3F7-65C4-443B-884D-605EF8319FFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSParking.Tests", "..\CSParking.Tests\CSParking.Tests.csproj", "{5A628492-F60B-43A3-A1FE-43FBF0E3B966}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F916A3F7-65C4-443B-884D-605EF8319FFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F916A3F7-65C4-443B-884D-605EF8319FFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F916A3F7-65C4-443B-884D-605EF8319FFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F916A3F7-65C4-443B-884D-605EF8319FFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A628492-F60B-43A3-A1FE-43FBF0E3B966}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A628492-F60B-43A3-A1FE-43FBF0E3B966}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A628492-F60B-43A3-A1FE-43FBF0E3B966}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A628492-F60B-43A3-A1FE-43FBF0E3B966}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {317D1550-983E-4C8F-9EE3-61828F36B9CF}
+	EndGlobalSection
+EndGlobal

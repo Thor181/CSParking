@@ -1,0 +1,74 @@
+using CSParking.Middlewares;
+using CSParking.Models.Database.Context;
+using CSParking.Services.Algorithms.Card;
+using CSParking.Services.Algorithms.Qr;
+using CSParking.Services.DataAccess;
+using Microsoft.EntityFrameworkCore;
+using Serilog;
+
+namespace CSParking
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
+
+            var isDevelopment = builder.Environment.IsDevelopment();
+
+            var configurationPath = isDevelopment
+                ? "appsettings.Development.json"
+                : "appsettings.json";
+
+            var configurationBuilder = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile(configurationPath);
+
+            var configuration = configurationBuilder.Build();
+
+            var loggingSection = configuration.GetRequiredSection("Logging");
+            var logFilePath = loggingSection.GetRequiredSection("LogFilePath").Value;
+            var logTemplate = loggingSection.GetRequiredSection("LogTemplate").Value;
+
+            builder.Logging.AddFile(logFilePath, outputTemplate: logTemplate);
+
+            // Add services to the container.
+            builder.Services.AddSingleton<IConfiguration>(_ => configuration);
+
+            var connectionString = isDevelopment
+                ? configuration.GetConnectionString("MfRADb_Development")
+                : configuration.GetConnectionString("MfRADb");
+
+            builder.Services.AddDbContext<CSParkingContext>(op => op.UseSqlServer(connectionString));
+
+            builder.Services.AddControllers();
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<UsersDataAccess>();
+            builder.Services.AddScoped<CardEventsDataAccess>();
+            builder.Services.AddScoped<QrEventsDataAccess>();
+            builder.Services.AddScoped<PayTypesDataAccess>();
+            builder.Services.AddScoped<EventTypesDataAccess>();
+            builder.Services.AddScoped<CardCheckAlgorithm>();
+            builder.Services.AddScoped<QrCheckAlgorithm>();
+
+            var app = builder.Build();
+
+
+            app.UseSwagger();
+            app.UseSwaggerUI();
+
+            app.UseHttpsRedirection();
+
+            app.UseAuthorization();
+
+            app.UseMiddleware<DbConnectionCheckHandler>();
+
+            app.MapControllers();
+
+            app.Run();
+        }
+    }
+}
