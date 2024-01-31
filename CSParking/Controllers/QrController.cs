@@ -41,7 +41,8 @@ namespace CSParking.Controllers
         public async Task<string> ReadQrEventAsync(string fn)
         {
             var qrEvent = await _eventsDataAccess.GetQrEvent(fn);
-            return qrEvent?.Dt.ToString("G") ?? string.Empty;
+            var response = $"@{qrEvent?.Dt.ToString("G") ?? string.Empty}%";
+            return response;
         }
     }
 }

@@ -14,11 +14,25 @@ namespace CSParking
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            var corsPolicyName = "defautCors";
+
             var isDevelopment = builder.Environment.IsDevelopment();
 
             var configurationPath = isDevelopment
                 ? "appsettings.Development.json"
                 : "appsettings.json";
+
+            builder.Services.AddCors(op =>
+            {
+                op.AddPolicy(corsPolicyName, policy =>
+                {
+                    policy.SetIsOriginAllowed(x => new Uri(x).IsLoopback)
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+
+
+                });
+            });
 
             var configurationBuilder = new ConfigurationBuilder()
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
@@ -29,6 +43,7 @@ namespace CSParking
             var loggingSection = configuration.GetRequiredSection("Logging");
             var logFilePath = loggingSection.GetRequiredSection("LogFilePath").Value;
             var logTemplate = loggingSection.GetRequiredSection("LogTemplate").Value;
+
 
             builder.Logging.AddFile(logFilePath, outputTemplate: logTemplate);
 
@@ -56,11 +71,13 @@ namespace CSParking
 
             var app = builder.Build();
 
+            app.UseCors(corsPolicyName);
 
             app.UseSwagger();
             app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
+
 
             app.UseAuthorization();
 
