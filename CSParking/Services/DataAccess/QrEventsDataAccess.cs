@@ -36,7 +36,7 @@ namespace CSParking.Services.DataAccess
 
         public async Task<QrEvent> GetQrEvent(string fn)
         {
-            var qrEvent = await DbContext.QrEvents.FirstOrDefaultAsync(x => Equals(x.FN, fn));
+            var qrEvent = await DbContext.QrEvents.Where(x => Equals(x.FN, fn)).OrderBy(x => x.Dt).LastOrDefaultAsync();
             return qrEvent;
         }
     }
