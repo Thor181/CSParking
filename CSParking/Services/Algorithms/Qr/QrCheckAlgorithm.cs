@@ -45,22 +45,22 @@ namespace CSParking.Services.Algorithms.Qr
             var cashlessPayTypeName = _configuration.GetPayTypeName(Utils.Extensions.ConfigurationExtensions.PayType.Cashless);
             var cashlessPayTypeId = await _payTypesDataAccess.GetPayTypeByName(cashlessPayTypeName);
 
-            var qrEventCashless = await _qrEventsDataAccess.GetQrEvent(checkQrEventDto.Fn, cashlessPayTypeId);
+            var qrEventCashless = await _qrEventsDataAccess.GetQrEventAsync(checkQrEventDto.Fn, cashlessPayTypeId);
 
             if (qrEventCashless != null)
                 return closeResponse;
 
-            var qrEventCash = await _qrEventsDataAccess.GetQrEvent(checkQrEventDto.Fn, cashPayTypeId);
+            var qrEventCash = await _qrEventsDataAccess.GetQrEventAsync(checkQrEventDto.Fn, cashPayTypeId);
 
             if (qrEventCash == null)
             {
-                var qrEventEmptyPay = await _qrEventsDataAccess.GetQrEvent(checkQrEventDto.Fn, emptyPayTypeId);
+                var qrEventEmptyPay = await _qrEventsDataAccess.GetQrEventAsync(checkQrEventDto.Fn, emptyPayTypeId);
 
                 if (qrEventEmptyPay == null)
                     return closeResponse;
 
-                var substractMinutes = (DateTime.Now - qrEventEmptyPay.Dt).Minutes;
-                if (substractMinutes > time)
+                var subtractMinutes = (DateTime.Now - qrEventEmptyPay.Dt).Minutes;
+                if (subtractMinutes > time)
                     return closeResponse;
             }
 
@@ -78,7 +78,39 @@ namespace CSParking.Services.Algorithms.Qr
             await _qrEventsDataAccess.WriteAsync(qrEvent);
 
             return openResponse;
+        }
 
+        public async Task<string> GetFnReadWsResponse(string fn)
+        {
+            var closeResponse = _configuration.GetResponse(Utils.Extensions.ConfigurationExtensions.Response.Close);
+            var openResponse = _configuration.GetResponse(Utils.Extensions.ConfigurationExtensions.Response.Open);
+            var time = _configuration.GetTimeSectionValue();
+
+            var cashPayTypeId = await _payTypesDataAccess.GetCashPayTypeId();
+            var cashlessPayTypeId = await _payTypesDataAccess.GetCashlessPayTypeId();
+            var zeroPayTypeId = await _payTypesDataAccess.GetZeroPayTypeId();
+
+
+            var qrEventCashless = await _qrEventsDataAccess.GetQrEventAsync(fn, cashlessPayTypeId);
+
+            if (qrEventCashless != null)
+                return closeResponse;
+
+            var qrEventCash = await _qrEventsDataAccess.GetQrEventAsync(fn, cashPayTypeId);
+
+            if (qrEventCash != null ) 
+                return openResponse;
+
+            var qrEventZero = await _qrEventsDataAccess.GetQrEventAsync(fn, zeroPayTypeId);
+
+            if (qrEventZero == null)
+                return closeResponse;
+
+            var subtractMinutes = (DateTime.Now - qrEventZero.Dt).Minutes;
+            if (subtractMinutes > time)
+                return closeResponse;
+
+            return openResponse;
         }
     }
 }
