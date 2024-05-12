@@ -13,14 +13,12 @@ namespace CSParking.Tests
 {
     public class TestQrCheckAlgorithm
     {
-        private readonly IServiceProvider serviceProvider;
         private IConfiguration configuration;
         private QrCheckAlgorithm algo;
 
         public TestQrCheckAlgorithm()
         {
             var core = new Core();
-            serviceProvider = core.ServiceProvider;
             configuration = core.ServiceProvider.GetRequiredService<IConfiguration>();
             algo = core.ServiceProvider.GetRequiredService<QrCheckAlgorithm>();
         }
@@ -64,5 +62,47 @@ namespace CSParking.Tests
             var closeResponse = configuration.GetResponse(Utils.Extensions.ConfigurationExtensions.Response.Close);
             Assert.Equal(closeResponse, response);
         }
+
+        [Fact]
+        public async Task QrEventWithFnAndPayTypeCashlessFound()
+        {
+            var response = await algo.GetFnReadWsResponse("9960440302516115");
+            var closeResponse = configuration.GetResponse(Utils.Extensions.ConfigurationExtensions.Response.Close);
+            Assert.Equal(closeResponse, response);
+        }
+
+        [Fact]
+        public async Task QrEventWithFnAndPayTypeCashFound()
+        {
+            var response = await algo.GetFnReadWsResponse("9956777302516115");
+            var openResponse = configuration.GetResponse(Utils.Extensions.ConfigurationExtensions.Response.Open);
+            Assert.Equal(openResponse, response);
+        }
+
+        [Fact]
+        public async Task QrEventWithFnAndPayTypeZeroNotFound()
+        {
+            var response = await algo.GetFnReadWsResponse("00112233_Not");
+            var closeResponse = configuration.GetResponse(Utils.Extensions.ConfigurationExtensions.Response.Close);
+            Assert.Equal(closeResponse, response);
+        }
+
+        [Fact]
+        public async Task QrEventWithFnAndPayTypeZeroFound_TimeMore()
+        {
+            var response = await algo.GetFnReadWsResponse("00112233");
+            var closeResponse = configuration.GetResponse(Utils.Extensions.ConfigurationExtensions.Response.Close);
+            Assert.Equal(closeResponse, response);
+        }
+
+        [Fact]
+        public async Task QrEventWithFnAndPayTypeZeroFound_TimeNotMore()
+        {
+            var response = await algo.GetFnReadWsResponse("00112233_TimeNotMore");
+            var openResponse = configuration.GetResponse(Utils.Extensions.ConfigurationExtensions.Response.Open);
+            Assert.Equal(openResponse, response);
+        }
+
+
     }
 }

@@ -32,8 +32,6 @@ namespace CSParking.Tests
 
             services.AddScoped<IConfiguration>(_ => configuration);
 
-            services.AddDbContext<CSParkingContext>(op =>  op.UseSqlServer(connectionString));
-
             services.AddScoped(x =>
             {
                 var mockDbContext = new Mock<CSParkingContext>();

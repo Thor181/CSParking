@@ -104,6 +104,54 @@ namespace CSParking.Tests
                 TypeId = 1
             });
 
+            list.Add(new QrEvent()
+            {
+                Dt = DateTime.Now.AddMinutes(-50),
+                FN = "9960440302516115",
+                FP = "-",
+                Id = Guid.NewGuid(),
+                PayId = 2,
+                PointId = 1,
+                Sum = 0,
+                TypeId = 1
+            });
+
+            list.Add(new QrEvent()
+            {
+                Dt = DateTime.Now.AddMinutes(-50),
+                FN = "9956777302516115",
+                FP = "-",
+                Id = Guid.NewGuid(),
+                PayId = 1,
+                PointId = 1,
+                Sum = 0,
+                TypeId = 1
+            });
+
+            list.Add(new QrEvent()
+            {
+                Dt = DateTime.Now.AddMinutes(-50),
+                FN = "00112233",
+                FP = "-",
+                Id = Guid.NewGuid(),
+                PayId = 3,
+                PointId = 1,
+                Sum = 0,
+                TypeId = 1
+            });
+
+            list.Add(new QrEvent()
+            {
+                Dt = DateTime.Now.AddMinutes(-5),
+                FN = "00112233_TimeNotMore",
+                FP = "-",
+                Id = Guid.NewGuid(),
+                PayId = 3,
+                PointId = 1,
+                Sum = 0,
+                TypeId = 1
+            });
+
             return list;
         }
 
@@ -127,6 +175,12 @@ namespace CSParking.Tests
             {
                 Id = 0,
                 Name = "-",
+            });
+
+            list.Add(new PayType()
+            {
+                Id = 3,
+                Name = "0"
             });
 
             return list;

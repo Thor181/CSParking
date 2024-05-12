@@ -13,9 +13,9 @@
 		"MfRADb_Development": "Server=localhost;Database=MfRADb;Encrypt=false;User Id=CSParkingUser;Password=1"
 	},
 	"Responses": {
-		"DatabaseNotAvailable": "nc",
-		"Close": "close",
-		"Open": "open"
+		"DatabaseNotAvailable": "@n%",
+		"Close": "@c%",
+		"Open": "@o%"
 	},
 	"Retry": {
 		"RetryCount": 10,
@@ -24,10 +24,12 @@
 	"PayTypes": {
 		"EmptyPayTypeValue": "-",
 		"Cash": "Нал",
-		"Cashless": "Безнал"
+		"Cashless": "Безнал",
+		"Zero": "0"
 	},
 	"EventTypes": {
 		"In": "Вход",
 		"Out": "Выход"
-	}
+	},
+	"TimeFormat": "dd.MM.yyyy HH:mm:ss"
 }
