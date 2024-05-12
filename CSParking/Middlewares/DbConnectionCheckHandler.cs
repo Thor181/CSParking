@@ -21,9 +21,9 @@ namespace CSParking.Middlewares
             var db = httpContext.RequestServices.GetRequiredService<CSParkingContext>();
             var configuration = httpContext.RequestServices.GetRequiredService<IConfiguration>();
 
-            var isDbAvilable = await db.Database.CanConnectAsync();
+            var isDbAvailable = await db.Database.CanConnectAsync();
 
-            if (!isDbAvilable)
+            if (!isDbAvailable)
             {
                 var response = configuration.GetRequiredSection("Responses").GetRequiredSection("DatabaseNotAvailable").Value ;
 
