@@ -1,6 +1,7 @@
 ﻿using CSParking.Models.Database.Context;
 using CSParking.Utils.Extensions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,48 @@ namespace CSParking.Services.DataAccess
 
             var id = emptyPayType.Id;
             return id;
+        }
+
+        public async Task<int> GetCashPayTypeId()
+        {
+            var cashPayTypeName = Configuration.GetPayTypeName(Utils.Extensions.ConfigurationExtensions.PayType.Cash);
+            var payType = await DbContext.PayTypes.SingleOrDefaultAsync(x => Equals(x.Name, cashPayTypeName));
+
+            if (payType == null)
+            {
+                Logger.LogError("Cash pay type not found");
+                return 0;
+            }
+
+            return payType.Id;
+        }
+
+        public async Task<int> GetCashlessPayTypeId()
+        {
+            var cashlessPayTypeName = Configuration.GetPayTypeName(Utils.Extensions.ConfigurationExtensions.PayType.Cashless);
+            var payType = await DbContext.PayTypes.SingleOrDefaultAsync(x => Equals(x.Name, cashlessPayTypeName));
+
+            if (payType == null)
+            {
+                Logger.LogError("Cashless pay type not found");
+                return 0;
+            }
+
+            return payType.Id;
+        }
+
+        public async Task<int> GetZeroPayTypeId()
+        {
+            var zeroPayTypeName = Configuration.GetPayTypeName(Utils.Extensions.ConfigurationExtensions.PayType.Zero);
+            var payType = await DbContext.PayTypes.SingleOrDefaultAsync(x => Equals(x.Name, zeroPayTypeName));
+
+            if (payType == null)
+            {
+                Logger.LogError("Zero pay type not found");
+                return 0;
+            }
+
+            return payType.Id;
         }
 
         public async Task<int> GetPayTypeByName(string name)
