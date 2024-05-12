@@ -20,7 +20,8 @@ namespace CSParking.Utils.Extensions
         {
             EmptyPayTypeValue, 
             Cash,
-            Cashless
+            Cashless,
+            Zero
         }
 
         public enum EventType
