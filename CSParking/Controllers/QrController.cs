@@ -40,8 +40,15 @@ namespace CSParking.Controllers
         [HttpGet]
         public async Task<string> ReadQrEventAsync(string fn)
         {
-            var qrEvent = await _eventsDataAccess.GetQrEvent(fn);
+            var qrEvent = await _eventsDataAccess.GetQrEventAsync(fn);
             var response = $"@{qrEvent?.Dt.ToString("G") ?? string.Empty}%";
+            return response;
+        }
+
+        [HttpGet]
+        public async Task<string> FnReadWsAsync(string fn)
+        {
+            var response = await _qrCheckAlgorithm.GetFnReadWsResponse(fn);
             return response;
         }
     }
