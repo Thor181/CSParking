@@ -28,13 +28,13 @@ namespace CSParking.Services.DataAccess
             await WriteAsync<QrEvent>(qrEvent);
         }
 
-        public async Task<QrEvent?> GetQrEvent(string fn, int payType)
+        public async Task<QrEvent?> GetQrEventAsync(string fn, int payType)
         {
             var qrEvent = await DbContext.QrEvents.FirstOrDefaultAsync(x => Equals(x.FN, fn) && x.PayId == payType);
             return qrEvent;
         }
 
-        public async Task<QrEvent> GetQrEvent(string fn)
+        public async Task<QrEvent> GetQrEventAsync(string fn)
         {
             var qrEvent = await DbContext.QrEvents.Where(x => Equals(x.FN, fn)).OrderBy(x => x.Dt).LastOrDefaultAsync();
             return qrEvent;
