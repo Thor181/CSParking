@@ -46,6 +46,14 @@ namespace CSParking.Controllers
         }
 
         [HttpGet]
+        public async Task<string> ReadQrEventMinutesAsync(string fn)
+        {
+            var qrEvent = await _eventsDataAccess.GetQrEventAsync(fn);
+            var response = $"@{Math.Ceiling((DateTime.Now - qrEvent.Dt).TotalMinutes)}%";
+            return response;
+        }
+
+        [HttpGet]
         public async Task<string> FnReadWsAsync(string fn)
         {
             var response = await _qrCheckAlgorithm.GetFnReadWsResponse(fn);
