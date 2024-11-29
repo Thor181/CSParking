@@ -1,5 +1,4 @@
-﻿using CSParking.Models.Database.Context;
-using CSParking.Models.Database;
+﻿using CSParking.Models.Database;
 using CSParking.Services.Algorithms.Card;
 using CSParking.Services.DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +15,7 @@ using Castle.Core.Logging;
 using Serilog;
 using CSParking.Services.Algorithms.Qr;
 using CSParking.Models.Database.Base;
+using CSParking.Models.Database.CsParking.Context;
 
 namespace CSParking.Tests
 {
