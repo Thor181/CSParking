@@ -3,6 +3,7 @@ using CSParking.Models.Database.CsParking.Context;
 using CSParking.Services.Algorithms.Card;
 using CSParking.Services.Algorithms.Qr;
 using CSParking.Services.DataAccess.CsParking;
+using CSParking.Services.DataAccess.Main;
 using CSParking.Services.Initialization;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -69,6 +70,7 @@ namespace CSParking
             builder.Services.AddScoped<QrEventsDataAccess>();
             builder.Services.AddScoped<PayTypesDataAccess>();
             builder.Services.AddScoped<EventTypesDataAccess>();
+            builder.Services.AddScoped<CountDataAccess>();
             builder.Services.AddScoped<CardCheckAlgorithm>();
             builder.Services.AddScoped<QrCheckAlgorithm>();
 
