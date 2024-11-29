@@ -9,7 +9,7 @@ namespace CSParking.Models.Database.CsParking
     public class Places
     {
         public int Id { get; set; }
-        public string TicketCount { get; set; }
-        public string CardCount { get; set; }
+        public int TicketCount { get; set; }
+        public int CardCount { get; set; }
     }
 }
