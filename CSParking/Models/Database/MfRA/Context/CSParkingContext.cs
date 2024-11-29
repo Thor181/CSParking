@@ -19,7 +19,6 @@ namespace CSParking.Models.Database.CsParking.Context
         public virtual DbSet<QrEvent> QrEvents { get; set; }
         public virtual DbSet<PayType> PayTypes { get; set; }
         public virtual DbSet<EventType> EventsTypes { get; set; }
-        public virtual DbSet<Places> Places { get; set; }
 
         public CSParkingContext()
         {
