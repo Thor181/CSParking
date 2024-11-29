@@ -1,6 +1,5 @@
 ﻿using CSParking.Models.Database;
 using CSParking.Services.Algorithms.Card;
-using CSParking.Services.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +15,7 @@ using Serilog;
 using CSParking.Services.Algorithms.Qr;
 using CSParking.Models.Database.Base;
 using CSParking.Models.Database.CsParking.Context;
+using CSParking.Services.DataAccess.CsParking;
 
 namespace CSParking.Tests
 {

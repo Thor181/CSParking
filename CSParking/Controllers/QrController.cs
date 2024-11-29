@@ -1,7 +1,7 @@
 ﻿using CSParking.Models.Applied;
 using CSParking.Models.Web;
 using CSParking.Services.Algorithms.Qr;
-using CSParking.Services.DataAccess;
+using CSParking.Services.DataAccess.CsParking;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSParking.Services.DataAccess
+namespace CSParking.Services.DataAccess.CsParking
 {
     public class UsersDataAccess : BaseDataAccess
     {
-        public UsersDataAccess(CSParkingContext db, IConfiguration configuration, ILogger<UsersDataAccess> logger) 
+        public UsersDataAccess(CSParkingContext db, IConfiguration configuration, ILogger<UsersDataAccess> logger)
             : base(db, configuration, logger)
         {
         }

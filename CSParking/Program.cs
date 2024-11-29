@@ -2,7 +2,7 @@ using CSParking.Middlewares;
 using CSParking.Models.Database.CsParking.Context;
 using CSParking.Services.Algorithms.Card;
 using CSParking.Services.Algorithms.Qr;
-using CSParking.Services.DataAccess;
+using CSParking.Services.DataAccess.CsParking;
 using CSParking.Services.Initialization;
 using Microsoft.EntityFrameworkCore;
 using Serilog;

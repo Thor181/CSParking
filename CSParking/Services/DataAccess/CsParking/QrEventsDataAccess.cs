@@ -9,11 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSParking.Services.DataAccess
+namespace CSParking.Services.DataAccess.CsParking
 {
     public class QrEventsDataAccess : BaseDataAccess
     {
-        public QrEventsDataAccess(CSParkingContext db, IConfiguration configuration, ILogger<BaseDataAccess> logger) 
+        public QrEventsDataAccess(CSParkingContext db, IConfiguration configuration, ILogger<BaseDataAccess> logger)
             : base(db, configuration, logger)
         {
         }

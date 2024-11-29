@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSParking.Services.DataAccess
+namespace CSParking.Services.DataAccess.CsParking
 {
     public class BaseDataAccess
     {
