@@ -1,8 +1,9 @@
 using CSParking.Middlewares;
-using CSParking.Models.Database.Context;
+using CSParking.Models.Database.CsParking.Context;
 using CSParking.Services.Algorithms.Card;
 using CSParking.Services.Algorithms.Qr;
 using CSParking.Services.DataAccess;
+using CSParking.Services.Initialization;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -54,6 +55,10 @@ namespace CSParking
 
             builder.Services.AddDbContext<CSParkingContext>(op => op.UseSqlServer(connectionString));
 
+            var mainConnectionString = configuration.GetConnectionString("Main");
+
+            builder.Services.AddDbContext<MainContext>(op => op.UseSqlServer(mainConnectionString));
+
             builder.Services.AddControllers();
             
             builder.Services.AddEndpointsApiExplorer();
@@ -69,13 +74,18 @@ namespace CSParking
 
             var app = builder.Build();
 
+            using (var scope  = app.Services.CreateScope())
+            {
+                var mainContext = scope.ServiceProvider.GetRequiredService<MainContext>();
+                DatabaseInitialization.Initialize(mainContext);
+            }
+
             app.UseCors(corsPolicyName);
 
             app.UseSwagger();
             app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
-
 
             app.UseAuthorization();
 
