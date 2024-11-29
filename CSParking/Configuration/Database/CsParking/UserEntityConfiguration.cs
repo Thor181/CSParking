@@ -1,4 +1,5 @@
-﻿using CSParking.Models.Database;
+﻿using CSParking.Configuration.Database.Interfaces;
+using CSParking.Models.Database.MfRA;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -7,13 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSParking.Configuration.Database
+namespace CSParking.Configuration.Database.CsParking
 {
-    public class UserEntityConfiguration : IEntityTypeConfiguration<User>
+    public class UserEntityConfiguration : IEntityTypeConfiguration<User>, ICsParkingEntityConfiguration
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            
+
         }
     }
 }
