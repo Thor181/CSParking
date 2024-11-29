@@ -16,6 +16,8 @@ using CSParking.Services.Algorithms.Qr;
 using CSParking.Models.Database.Base;
 using CSParking.Models.Database.CsParking.Context;
 using CSParking.Services.DataAccess.CsParking;
+using CSParking.Models.Database.CsParking;
+using CSParking.Services.DataAccess.Main;
 
 namespace CSParking.Tests
 {
@@ -41,6 +43,14 @@ namespace CSParking.Tests
                 mockDbContext.Setup(x => x.EventsTypes).ReturnsDbSet(TestDataHelper.GetFakeEventTypeList());
 
                 return mockDbContext.Object;
+            });
+
+            services.AddScoped(x =>
+            {
+                var mockMainContext = new Mock<MainContext>();
+                mockMainContext.Setup(x => x.Places).ReturnsDbSet(new List<Places>() { new Places() { Id = 1, CardCount = 0, TicketCount = 0 } });
+
+                return mockMainContext.Object;
             });
 
             services.AddScoped(x =>
@@ -91,6 +101,11 @@ namespace CSParking.Tests
                 var payTypesDataAccess = new EventTypesDataAccess(db, configuration, new Mock<Microsoft.Extensions.Logging.ILogger<EventTypesDataAccess>>().Object);
 
                 return payTypesDataAccess;
+            });
+
+            services.AddScoped(x =>
+            {
+                return new CountDataAccess(x);
             });
 
             services.AddScoped(x => new Mock<Microsoft.Extensions.Logging.ILogger<QrCheckAlgorithm>>().Object);

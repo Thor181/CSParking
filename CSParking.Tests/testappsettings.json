@@ -31,5 +31,8 @@
 		"In": "Вход",
 		"Out": "Выход"
 	},
-	"TimeFormat": "dd.MM.yyyy HH:mm:ss"
+	"TimeFormat": "dd.MM.yyyy HH:mm:ss",
+	"Count": {
+		"CloseResponseIfLessThanZero": true
+	}
 }
