@@ -13,22 +13,28 @@ namespace CSParking.Migrations.Main
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            var placesTable = nameof(MainContext.Places);
+
             migrationBuilder.Sql($@"
                 create trigger PreventPlacesMultipleRows
-                on dbo.{nameof(MainContext.Places)}
+                on dbo.{placesTable}
                 instead of insert
                 as 
                 begin
-                        if (select count(*) from dbo.{nameof(MainContext.Places)}) = 0
+                        if (select count(*) from dbo.{placesTable}) = 0
                         begin
-                            insert into dbo.{nameof(MainContext.Places)} ({nameof(Places.Id)}, {nameof(Places.CardCount)}, {nameof(Places.TicketCount)})
+                            insert into dbo.{placesTable} ({nameof(Places.Id)}, {nameof(Places.CardCount)}, {nameof(Places.TicketCount)})
                             select {nameof(Places.Id)}, {nameof(Places.CardCount)}, {nameof(Places.TicketCount)} from inserted;
                         end
                         else
                         begin
                             raiserror('There is only one row available in this table.', 16, 1);
                         end		
-                end
+                end;
+                IF NOT EXISTS (SELECT * FROM {placesTable})
+                BEGIN
+                    INSERT INTO Places ({nameof(Places.TicketCount)}, {nameof(Places.CardCount)}) VALUES (0,0);
+                END
             ");
         }
 
