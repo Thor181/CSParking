@@ -82,5 +82,11 @@ namespace CSParking.Utils.Extensions
             return type.GetRequiredSection(Enum.GetName(eventType)!).Value;
         }
 
+        public static bool GetNeedCloseResponseIfLessThanZero(this IConfiguration configuration)
+        {
+            var value = Convert.ToBoolean(configuration.GetSection("Count:CloseResponseIfLessThanZero").Value);
+
+            return value;
+        }
     }
 }
