@@ -1,4 +1,5 @@
 ﻿using CSParking.Models.Database;
+using CSParking.Models.Database.MfRA;
 using CSParking.Models.Web;
 using CSParking.Services.DataAccess;
 using CSParking.Utils.Extensions;

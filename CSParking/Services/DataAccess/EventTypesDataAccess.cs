@@ -1,4 +1,4 @@
-﻿using CSParking.Models.Database.Context;
+﻿using CSParking.Models.Database.CsParking.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

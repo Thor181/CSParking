@@ -1,4 +1,4 @@
-﻿using CSParking.Models.Database.Context;
+﻿using CSParking.Models.Database.CsParking.Context;
 using CSParking.Utils.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

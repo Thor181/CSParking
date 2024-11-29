@@ -1,5 +1,5 @@
-﻿using CSParking.Models.Database;
-using CSParking.Models.Database.Context;
+﻿using CSParking.Models.Database.CsParking.Context;
+using CSParking.Models.Database.MfRA;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

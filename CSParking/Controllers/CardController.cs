@@ -1,5 +1,4 @@
-﻿using CSParking.Models.Database.Context;
-using CSParking.Models.Web;
+﻿using CSParking.Models.Web;
 using CSParking.Services.Algorithms.Card;
 using CSParking.Services.DataAccess;
 using CSParking.Utils.Extensions;

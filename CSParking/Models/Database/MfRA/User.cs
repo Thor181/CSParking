@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSParking.Models.Database
+namespace CSParking.Models.Database.MfRA
 {
     public class User : IDatabaseEntity
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSParking.Models.Database
+namespace CSParking.Models.Database.MfRA
 {
     public class CardEvent : IDatabaseEntity
     {
@@ -13,6 +13,6 @@ namespace CSParking.Models.Database
         public DateTime Dt { get; set; }
         public int TypeId { get; set; }
         public int PointId { get; set; }
-        public string Card { get; set; } 
+        public string Card { get; set; }
     }
 }

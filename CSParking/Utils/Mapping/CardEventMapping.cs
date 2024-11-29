@@ -1,5 +1,5 @@
 ﻿using CSParking.Models.Applied;
-using CSParking.Models.Database;
+using CSParking.Models.Database.MfRA;
 using CSParking.Models.Web;
 using System;
 using System.Collections.Generic;
