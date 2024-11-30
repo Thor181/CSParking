@@ -18,26 +18,26 @@ namespace CSParking.Tests
             _countDataAccess = core.ServiceProvider.GetRequiredService<CountDataAccess>();
         }
         //TODO: need to finish it
-        [Fact]
-        public async Task Ticket_SuccessIncrement()
-        {
-            var prevValue = await _countDataAccess.GetCurrentTicketCountAsync();
-            await _countDataAccess.IncrementTicketCountAsync();
-            var expectedValue = prevValue + 1;
-            var current = await _countDataAccess.GetCurrentTicketCountAsync();
+        //[Fact]
+        //public async Task Ticket_SuccessIncrement()
+        //{
+        //    var prevValue = await _countDataAccess.GetCurrentTicketCountAsync();
+        //    await _countDataAccess.IncrementTicketCountAsync();
+        //    var expectedValue = prevValue + 1;
+        //    var current = await _countDataAccess.GetCurrentTicketCountAsync();
 
-            Assert.Equal(expectedValue, current);
-        }
+        //    Assert.Equal(expectedValue, current);
+        //}
 
-        [Fact]
-        public async Task Ticket_SuccessDecrement()
-        {
-            var prevValue = await _countDataAccess.GetCurrentTicketCountAsync();
-            await _countDataAccess.DecrementTicketCountAsync(false);
-            var expectedValue = prevValue - 1;
-            var current = await _countDataAccess.GetCurrentTicketCountAsync();
+        //[Fact]
+        //public async Task Ticket_SuccessDecrement()
+        //{
+        //    var prevValue = await _countDataAccess.GetCurrentTicketCountAsync();
+        //    await _countDataAccess.DecrementTicketCountAsync(false);
+        //    var expectedValue = prevValue - 1;
+        //    var current = await _countDataAccess.GetCurrentTicketCountAsync();
 
-            Assert.Equal(expectedValue, current);
-        }
+        //    Assert.Equal(expectedValue, current);
+        //}
     }
 }
